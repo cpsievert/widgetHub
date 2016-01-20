@@ -5,7 +5,7 @@ save_widget <- function(x, dir = ".") {
   dir <- normalizePath(dir, mustWork = T)
   owd <- setwd(dir)
   on.exit(owd, add = T)
-  if (plotly:::is.plotly(x)) x <- as.widget(x)
+  if (inherits(x, "plotly")) x <- plotly::as.widget(x)
   htmlwidgets::saveWidget(x, file = "index.html", selfcontained = FALSE)
 }
 
